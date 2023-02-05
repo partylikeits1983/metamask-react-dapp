@@ -30,8 +30,8 @@ export default function AccountModal({ isOpen, onClose }: Props) {
   const {connect, deactivate, accounts} = useMetamask();
 
   useEffect(() => {
-    if (account == undefined) {
-      // connect()
+    if (account == undefined && isOpen) {
+      connect()
     }
     setAccount(accounts[0]);
   })

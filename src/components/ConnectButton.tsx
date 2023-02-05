@@ -10,7 +10,6 @@ type Props = {
   handleOpenModal: any;
 };
 
-
 export default function ConnectButton({ handleOpenModal }: Props) {
   const [account, setAccount] = useState('');
 

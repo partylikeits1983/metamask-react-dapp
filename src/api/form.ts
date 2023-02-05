@@ -15,8 +15,6 @@ const ERC20ABI = [
 	"error InsufficientBalance(account owner, uint balance)",
 ];
 
-
-
 export const getBalance = async (address: string) => {
 	const provider = new ethers.providers.Web3Provider(window.ethereum)
 	const signer = provider.getSigner()
@@ -47,7 +45,6 @@ export const getBalance = async (address: string) => {
 	}
 }
 
-
 export const approve = async (address: string) => {
 	const provider = new ethers.providers.Web3Provider(window.ethereum)
 	const signer = provider.getSigner()
@@ -76,10 +73,7 @@ export const approve = async (address: string) => {
 	}
 }
 
-
-
-
-export const transferFrom = async (from: string) => {
+export const transfer = async (from: string) => {
 	const provider = new ethers.providers.Web3Provider(window.ethereum)
 	const signer = provider.getSigner()
 
@@ -92,12 +86,9 @@ export const transferFrom = async (from: string) => {
 	console.log("here");
 
 	try {
-		
 		const tx = await token.transfer(to, 100);
 
 		await tx.wait();
-		// const balance = ethers.utils.formatEther(value);
-
 		alert("success");
 
 		console.log('success')
@@ -115,6 +106,4 @@ export const transferFrom = async (from: string) => {
 		}
 	}
 }
-
-
 
