@@ -29,13 +29,9 @@ export default function AccountModal({ isOpen, onClose }: Props) {
 
   const {connect, deactivate, accounts} = useMetamask();
 
-
   useEffect(() => {
-    const getAccount = async() => {
-      await connect()
-    }
     if (account == undefined) {
-      getAccount()
+      // connect()
     }
     setAccount(accounts[0]);
   })

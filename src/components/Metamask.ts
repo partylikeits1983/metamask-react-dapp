@@ -6,8 +6,6 @@ import {
   Web3Provider 
 } from '@ethersproject/providers';
 
-// import { formatEther } from "@ethersproject/units";
-
 
 import { useState } from 'react';
 
@@ -33,6 +31,7 @@ interface ProviderRpcError extends Error {
 
 function useMetamask() {
   const [provider, setProvider] = useState<Web3Provider | null>(null);
+  // Signer | Provider | undefined
   const [signer, setSigner] = useState<JsonRpcSigner | null>(null);
   
   const [accounts, setAccounts] = useState<string[]>([]);
