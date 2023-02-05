@@ -17,7 +17,7 @@ import { ExternalLinkIcon, CopyIcon } from "@chakra-ui/icons";
 import Identicon from "./Identicon";
 import { useMetamask } from "./Metamask";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Props = {
   isOpen: any;
@@ -25,13 +25,30 @@ type Props = {
 };
 
 export default function AccountModal({ isOpen, onClose }: Props) {
-  const { accounts, deactivate } = useMetamask();
   const [account, setAccount] = useState<string>("");
+
+  const {signer, connect, deactivate, accounts, balance} = useMetamask();
+
+
+  useEffect(() => {
+    const getAccount = async() => {
+      await connect()
+    }
+    if (account == undefined) {
+      getAccount()
+    }
+    setAccount(accounts[0]);
+  })
 
   function handleDeactivateAccount() {
     deactivate();
-    setAccount("0x")
+    setAccount("")
     onClose();
+  }
+
+  function copyAddress() {
+    const copyText = account;
+    navigator.clipboard.writeText(copyText)
   }
 
   return (
@@ -100,13 +117,14 @@ export default function AccountModal({ isOpen, onClose }: Props) {
               >
                 {account &&
                   `${account.slice(0, 6)}...${account.slice(
-                    account.length - 4,
+                    account.length - 6,
                     account.length
                   )}`}
               </Text>
             </Flex>
             <Flex alignContent="center" m={3}>
               <Button
+                onClick={copyAddress}
                 variant="link"
                 color="gray.400"
                 fontWeight="normal"
@@ -116,7 +134,7 @@ export default function AccountModal({ isOpen, onClose }: Props) {
                   color: "whiteAlpha.800",
                 }}
               >
-                <CopyIcon mr={1} />
+                <CopyIcon mr={1}/>
                 Copy Address
               </Button>
               <Link

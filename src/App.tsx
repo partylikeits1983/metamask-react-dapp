@@ -10,7 +10,7 @@ import { useState } from "react";
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const [account, setAccount] = useState('');
+  // const [account, setAccount] = useState('');
 
   return (
     <ChakraProvider theme={theme}>

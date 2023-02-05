@@ -5,6 +5,10 @@ import {
   Network, 
   Web3Provider 
 } from '@ethersproject/providers';
+
+// import { formatEther } from "@ethersproject/units";
+
+
 import { useState } from 'react';
 
 declare global {
@@ -32,6 +36,7 @@ function useMetamask() {
   const [signer, setSigner] = useState<JsonRpcSigner | null>(null);
   
   const [accounts, setAccounts] = useState<string[]>([]);
+  const [balance, setBalance] = useState<ethers.ethers.BigNumberish>("");
   const [network, setNetwork] = useState<Network | null>(null);
 
   const setupProvider = () => {
@@ -62,9 +67,14 @@ function useMetamask() {
     const accounts: string[] = await provider.send("eth_requestAccounts", []);
     const network: Network = await provider.getNetwork();
     const signer: JsonRpcSigner = provider.getSigner();
+    const balance = await provider.getBalance(accounts[0]);
+
+    console.log("BALANCE!!", balance);
+
     setNetwork(network);
     setAccounts(accounts);
     setSigner(signer);
+    setBalance(balance);
   }
 
   const deactivate = async () => {
@@ -101,10 +111,10 @@ function useMetamask() {
     signer,
     accounts,
     network,
+    balance,
     connect,
     getAccounts,
     sendTransaction,
-    getBalance,
     deactivate
   }
 }

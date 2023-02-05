@@ -15,33 +15,18 @@ type Props = {
 
 export default function ConnectButton({ handleOpenModal }: Props) {
   const [account, setAccount] = useState('');
-  const [etherBalance, setBalance] = useState(0);
 
-  const {signer, connect, accounts, getBalance} = useMetamask();
-/*
-  const [signer, setSigner] = useMetamask();
-  const [accounts, setAccounts] = useMetamask();
-  const [network, setNetwork] = useMetamask();
-  const [balance, getBalance] = useMetamask(); */
+  const {signer, connect, accounts, balance} = useMetamask();
 
-  //const etherBalance = getBalance(accounts[0]);
+
 
   useEffect(() => {
-    console.log("in connet:", accounts[0])
     setAccount(accounts[0]);
   })
 
 
   const handleConnectWallet = async() => {
-    // activateBrowserWallet();
     await connect();
-    
-    console.log('here');
-    // setBalance()
-    // console.log(accounts[0]);
-
-    setAccount(accounts[0]);
-
   }
 
   interface IdenticonProps {
@@ -58,7 +43,7 @@ export default function ConnectButton({ handleOpenModal }: Props) {
     >
       <Box px="3">
         <Text color="white" fontSize="md">
-          {etherBalance && parseFloat(formatEther(etherBalance)).toFixed(3)} ETH
+          {balance && parseFloat(formatEther(balance)).toFixed(3)} ETH
         </Text>
       </Box>
       <Button
