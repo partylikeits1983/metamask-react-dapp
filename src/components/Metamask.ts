@@ -69,8 +69,6 @@ function useMetamask() {
     const signer: JsonRpcSigner = provider.getSigner();
     const balance = await provider.getBalance(accounts[0]);
 
-    console.log("BALANCE!!", balance);
-
     setNetwork(network);
     setAccounts(accounts);
     setSigner(signer);

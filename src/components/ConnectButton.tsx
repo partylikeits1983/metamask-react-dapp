@@ -11,19 +11,14 @@ type Props = {
 };
 
 
-
-
 export default function ConnectButton({ handleOpenModal }: Props) {
   const [account, setAccount] = useState('');
 
-  const {signer, connect, accounts, balance} = useMetamask();
-
-
+  const {connect, accounts, balance} = useMetamask();
 
   useEffect(() => {
     setAccount(accounts[0]);
   })
-
 
   const handleConnectWallet = async() => {
     await connect();

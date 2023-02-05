@@ -27,7 +27,7 @@ type Props = {
 export default function AccountModal({ isOpen, onClose }: Props) {
   const [account, setAccount] = useState<string>("");
 
-  const {signer, connect, deactivate, accounts, balance} = useMetamask();
+  const {connect, deactivate, accounts} = useMetamask();
 
 
   useEffect(() => {

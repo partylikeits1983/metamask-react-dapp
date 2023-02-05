@@ -13,7 +13,6 @@ export default function Identicon({ account }: { account: string }) {
   const ref = useRef<HTMLDivElement>();
 
   useEffect(() => {
-    console.log("in identicon: ", account);
     if (account && ref.current) {
       ref.current.innerHTML = "";
       ref.current.appendChild(Jazzicon(16, parseInt(account.slice(2, 10), 16)));
