@@ -6,4 +6,6 @@ Main dependencies:
 - @chakra-ui/react
 - ethers
 
-!(./docs/image.png)
+<p align="center">
+   <img src="/docs/image.png">
+</p>
