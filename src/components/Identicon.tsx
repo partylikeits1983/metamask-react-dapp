@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Jazzicon from "@metamask/jazzicon";
 import styled from "@emotion/styled";
 

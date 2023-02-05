@@ -16,15 +16,13 @@ export default function ConnectButton({ handleOpenModal }: Props) {
   const {connect, accounts, balance} = useMetamask();
 
   useEffect(() => {
-    setAccount(accounts[0]);
+    if (accounts == undefined) {
+      setAccount(accounts[0]);
+    }
   })
 
   const handleConnectWallet = async() => {
     await connect();
-  }
-
-  interface IdenticonProps {
-    account: string;
   }
 
   return account ? (

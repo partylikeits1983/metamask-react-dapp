@@ -1,8 +1,6 @@
 
 
-import { ChakraProvider, useDisclosure, Button } from "@chakra-ui/react";
-
-
+import { ChakraProvider, useDisclosure, Button, Stack } from "@chakra-ui/react";
 import theme from "./theme";
 import Layout from "./components/Layout";
 import ConnectButton from "./components/ConnectButton";
@@ -11,7 +9,6 @@ import "@fontsource/inter";
 
 import { getBalance, transfer } from "./api/form"
 import { useMetamask } from "./components/Metamask";
-
 
 
 function App() {
@@ -33,20 +30,22 @@ function App() {
     <ChakraProvider theme={theme}>
 
       <Layout>
-        <ConnectButton handleOpenModal={onOpen} />
-        <AccountModal isOpen={isOpen} onClose={onClose} />
+        <Stack spacing={4} direction='column' align='center'>
 
-        <Button onClick={() => {
-            handleGetBalance();
-        }}>getBalance</Button>
+          <ConnectButton handleOpenModal={onOpen} />
+          <AccountModal isOpen={isOpen} onClose={onClose} />
 
-        <Button onClick={() => {
-            handleTransfer();
-        }}>transfer</Button>
+          <Button onClick={() => {
+              handleGetBalance();
+          }}>getBalance</Button>
+
+          <Button onClick={() => {
+              handleTransfer();
+          }}>transfer</Button>
+
+        </Stack>
 
       </Layout>
-
-
 
     </ChakraProvider>
   );
