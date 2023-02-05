@@ -13,7 +13,7 @@ type Props = {
 export default function ConnectButton({ handleOpenModal }: Props) {
   const [account, setAccount] = useState('');
 
-  const {connect, accounts, balance} = useMetamask();
+  const {connect, getAccounts, accounts, balance} = useMetamask();
 
   useEffect(() => {
     if (accounts == undefined) {
@@ -21,8 +21,11 @@ export default function ConnectButton({ handleOpenModal }: Props) {
     }
   })
 
+  // @dev this can be optimized.. 
   const handleConnectWallet = async() => {
     await connect();
+    const accounts = await getAccounts();
+    setAccount(accounts[0]);
   }
 
   return account ? (

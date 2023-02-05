@@ -6,7 +6,6 @@ import {
   Web3Provider 
 } from '@ethersproject/providers';
 
-
 import { useState } from 'react';
 
 declare global {
