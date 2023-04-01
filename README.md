@@ -15,5 +15,5 @@ Main dependencies:
 
 ```sh
 yarn
-npm start
+yarn start
 ```
